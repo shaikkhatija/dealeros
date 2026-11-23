@@ -4,34 +4,52 @@ A plain Django + React application that imports two event ledgers and shows tena
 
 ## Run from a clean clone
 
+### 1. Set up the Python environment
+
+Run these commands from the project root:
+
+```powershell
 py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
+```
 
+### 2. Start the Django backend
+
+```powershell
 cd backend
 python manage.py migrate
 python manage.py import_data
 python manage.py runserver
+```
 
-````
+Backend URL: `http://localhost:8000/`
 
-In a second terminal:
+### 3. Start the React frontend
+
+Open a second terminal from the project root:
 
 ```powershell
 cd frontend
 npm install
 npm run dev
-````
+```
 
-Open `http://localhost:5173`.
+Frontend URL: `http://localhost:5173/`
 
-The API is `http://localhost:8000/api/disagreements/?org=ORG-A&reason=VALUE_MISMATCH&sort=-value`.
+### API endpoint
+
+```text
+http://localhost:8000/api/disagreements/?org=ORG-A&reason=VALUE_MISMATCH&sort=-value
+```
 
 ## Tests
 
+From the project root, activate the virtual environment and run:
+
 ```powershell
 cd backend
-..\\.venv\\Scripts\\python.exe -m pytest -q
+python -m pytest -q
 ```
 
 ## What is built
