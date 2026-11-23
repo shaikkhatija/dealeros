@@ -4,16 +4,16 @@ A plain Django + React application that imports two event ledgers and shows tena
 
 ## Run from a clean clone
 
-```powershell
-python -m venv .venv
-.\\.venv\\Scripts\\Activate.ps1
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 
 cd backend
 python manage.py migrate
 python manage.py import_data
 python manage.py runserver
-```
+
+````
 
 In a second terminal:
 
@@ -21,7 +21,7 @@ In a second terminal:
 cd frontend
 npm install
 npm run dev
-```
+````
 
 Open `http://localhost:5173`.
 
