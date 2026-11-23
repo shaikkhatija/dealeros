@@ -74,10 +74,13 @@ def disagreements_api(request):
     sort = (request.GET.get("sort") or "").strip()
     if sort in ("value", "-value"):
         reverse = sort.startswith("-")
-        output.sort(
-            key=lambda row: (row["a_value"] is None, Decimal(row["a_value"]) if row["a_value"] is not None else Decimal("0")),
+        rows_with_difference = [row for row in output if row["difference"] is not None]
+        rows_without_difference = [row for row in output if row["difference"] is None]
+        rows_with_difference.sort(
+            key=lambda row: Decimal(row["difference"]),
             reverse=reverse,
         )
+        output = rows_with_difference + rows_without_difference
 
     return JsonResponse(output, safe=False)
 
